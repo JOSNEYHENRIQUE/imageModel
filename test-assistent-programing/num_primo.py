@@ -20,20 +20,20 @@ RESULT_SEPARATOR = "-" * SEPARATOR_LENGTH
 
 def is_prime(number: int) -> bool:
     """
-    Check if a number is prime using the 6k±1 optimization.
+    Verifica se um número é primo usando a otimização 6k±1.
 
-    A prime number is a natural number greater than 1 that has no positive
-    divisors other than 1 and itself.
+    Um número primo é um número natural maior que 1 que não possui divisores
+    positivos além de 1 e ele mesmo.
 
     Args:
-        number (int): The number to check for primality.
+        number (int): O número a ser verificado para primalidade.
 
     Returns:
-        bool: True if the number is prime, False otherwise.
+        bool: True se o número é primo, False caso contrário.
 
     Raises:
-        TypeError: If the input is not an integer.
-        ValueError: If the input is negative.
+        TypeError: Se a entrada não for um inteiro.
+        ValueError: Se a entrada for negativa.
 
     Examples:
         >>> is_prime(2)
@@ -63,11 +63,11 @@ def is_prime(number: int) -> bool:
     return _check_prime_factors(number)
 
 def _is_divisible_by_two_or_three(number: int) -> bool:
-    """Check if number is divisible by 2 or 3."""
+    """Verifica se o número é divisível por 2 ou 3."""
     return number % 2 == 0 or number % 3 == 0
 
 def _check_prime_factors(number: int) -> bool:
-    """Check for prime factors using 6k±1 optimization."""
+    """Verifica fatores primos usando a otimização 6k±1."""
     divisor_candidate = FIRST_PRIME_AFTER_THREE
     while divisor_candidate * divisor_candidate <= number:
         if _is_divisible_by_candidate(number, divisor_candidate):
@@ -76,19 +76,21 @@ def _check_prime_factors(number: int) -> bool:
     return True
 
 def _is_divisible_by_candidate(number: int, candidate: int) -> bool:
-    """Check if number is divisible by candidate or candidate + 2."""
+    """Verifica se o número é divisível pelo candidato ou candidato + 2."""
     return number % candidate == 0 or number % (candidate + 2) == 0
 
 def get_user_input() -> str:
-    """Get input from user."""
+    """Obtém a entrada do usuário."""
     return input(PROMPT_MESSAGE).strip().lower()
 
 def validate_and_convert_input(user_input: str) -> Tuple[bool, Optional[int], Optional[str]]:
     """
-    Validate and convert user input.
+    Valida e converte a entrada do usuário.
 
     Returns:
-        Tuple of (is_exit, number, error_message)
+        Tuple: (is_exit, number, error_message) onde is_exit indica se o usuário
+            deseja sair, number é o número inteiro convertido, e error_message
+            contém a mensagem de erro, se houver.
     """
     if user_input == EXIT_COMMAND:
         return True, None, None
@@ -100,7 +102,7 @@ def validate_and_convert_input(user_input: str) -> Tuple[bool, Optional[int], Op
         return False, None, INVALID_INPUT_MESSAGE
 
 def check_and_display_result(number: int) -> None:
-    """Check if number is prime and display result."""
+    """Verifica se o número é primo e exibe o resultado."""
     try:
         is_prime_result = is_prime(number)
         status = "É PRIMO" if is_prime_result else "NÃO é primo"
@@ -111,23 +113,23 @@ def check_and_display_result(number: int) -> None:
         print(RESULT_SEPARATOR)
 
 def display_welcome() -> None:
-    """Display welcome message."""
+    """Exibe a mensagem de boas-vindas."""
     print(PROGRAM_TITLE)
     print("=" * SEPARATOR_LENGTH)
     print(WELCOME_MESSAGE)
     print(f"{EXIT_MESSAGE}\n")
 
 def handle_keyboard_interrupt() -> None:
-    """Handle keyboard interrupt gracefully."""
+    """Trata a interrupção do teclado de forma elegante."""
     print(f"\n\n{INTERRUPTED_MESSAGE}")
 
 def handle_unexpected_error(error: Exception) -> None:
-    """Handle unexpected errors."""
+    """Trata erros inesperados."""
     print(UNEXPECTED_ERROR_MESSAGE.format(error))
     print(RESULT_SEPARATOR)
 
 def main() -> None:
-    """Run interactive prime checker for user input."""
+    """Executa o verificador interativo de números primos."""
     display_welcome()
 
     while True:

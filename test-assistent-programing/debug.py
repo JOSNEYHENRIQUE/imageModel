@@ -17,14 +17,14 @@ total_item2 = qtd2 * item2
 total_item3 = qtd3 * item3
 
 subtotal = total_item1 + total_item2 + total_item3
-imposto = subtotal * 0.10
+imposto = subtotal * 0.10  # Aplicar taxa fixa de imposto de 10%
 
 # DESCONTO
 desconto_cupom = float(input("Você tem um cupom de desconto? (Digite o percentual ou 0): "))
-desconto = subtotal * (desconto_cupom / 100)
+desconto = subtotal * (desconto_cupom / 100)  # Calcular valor do desconto em reais a partir do percentual
 
 # TOTAL FINAL
-total = subtotal + imposto - desconto
+total = subtotal + imposto - desconto  # Somar imposto e subtrair desconto do subtotal
 
 # EXIBIÇÃO
 linha = "=" * 31
@@ -40,7 +40,7 @@ print(separador)
 print(f" Subtotal:      R$ {subtotal:.2f}")
 print(f" Imposto (10%): R$ {imposto:.2f}")
 
-if desconto_cupom > 0:
+if desconto_cupom > 0:  # Exibir desconto apenas se há cupom válido (maior que 0%)
     print(f" Desconto ({desconto_cupom:.0f}%): -R$ {desconto:.2f}")
 
 print(linha)
